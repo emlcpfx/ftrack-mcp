@@ -1,0 +1,28 @@
+{
+  "name": "ftrack-mcp",
+  "version": "1.0.0",
+  "description": "Comprehensive MCP server for ftrack API - all 39+ operations",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "ftrack-mcp": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ftrack",
+    "mcp",
+    "model-context-protocol",
+    "vfx",
+    "production-tracking"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.1",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.23.8"
+  }
+}
