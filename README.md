@@ -8,6 +8,8 @@ A Model Context Protocol (MCP) server that provides AI assistants (like Claude) 
 - **ftrack account** with API access
 - **MCP-compatible client** (Claude Desktop, Cursor, VS Code with Claude extension, etc.)
 
+> **Note:** This project was developed and tested on Windows. It should work on macOS and Linux but hasn't been tested on those platforms yet. If you encounter issues, please open an issue on GitHub.
+
 ## Installation
 
 ### 1. Clone the repository
