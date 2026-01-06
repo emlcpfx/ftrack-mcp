@@ -35,14 +35,67 @@ npm install
 
 ## Configuration
 
-### For Claude Desktop
+### Step 1: Set Environment Variables (Recommended)
 
-Edit your Claude Desktop configuration file:
+The most secure approach is to set your credentials as system environment variables. The MCP server reads from these automatically.
 
-**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows (PowerShell - run as Administrator):**
+```powershell
+[System.Environment]::SetEnvironmentVariable('FTRACK_SERVER', 'https://your-workspace.ftrackapp.com', 'User')
+[System.Environment]::SetEnvironmentVariable('FTRACK_API_USER', 'your-username', 'User')
+[System.Environment]::SetEnvironmentVariable('FTRACK_API_KEY', 'your-api-key', 'User')
+```
 
-Add the ftrack server configuration:
+**Windows (GUI):** Settings → System → About → Advanced system settings → Environment Variables
+
+**macOS/Linux (~/.bashrc or ~/.zshrc):**
+```bash
+export FTRACK_SERVER="https://your-workspace.ftrackapp.com"
+export FTRACK_API_USER="your-username"
+export FTRACK_API_KEY="your-api-key"
+```
+
+After setting environment variables, restart your terminal/IDE.
+
+### Step 2: Configure Your MCP Client
+
+#### Claude Desktop
+
+Edit your config file:
+- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "ftrack": {
+      "command": "node",
+      "args": ["C:/path/to/ftrack-mcp/src/index.js"]
+    }
+  }
+}
+```
+
+#### Cursor / VS Code
+
+Add to your MCP settings or `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "ftrack": {
+      "command": "node",
+      "args": ["/absolute/path/to/ftrack-mcp/src/index.js"]
+    }
+  }
+}
+```
+
+**Note:** Use forward slashes (`/`) even on Windows.
+
+### Alternative: Credentials in Config (Less Secure)
+
+If you can't set system environment variables, you can pass them through the MCP config:
 
 ```json
 {
@@ -60,34 +113,11 @@ Add the ftrack server configuration:
 }
 ```
 
-**Important:** Replace the path and credentials with your actual values. Use forward slashes (`/`) even on Windows.
-
-### For Cursor / VS Code
-
-Add to your MCP settings or `.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "ftrack": {
-      "command": "node",
-      "args": ["/absolute/path/to/ftrack-mcp/src/index.js"],
-      "env": {
-        "FTRACK_SERVER": "https://your-workspace.ftrackapp.com",
-        "FTRACK_API_USER": "your-username",
-        "FTRACK_API_KEY": "your-api-key"
-      }
-    }
-  }
-}
-```
+⚠️ **Warning:** This stores credentials in a config file. Make sure this file is not committed to version control.
 
 ### Running Standalone (for testing)
 
 ```bash
-export FTRACK_SERVER="https://your-workspace.ftrackapp.com"
-export FTRACK_API_USER="your-username"
-export FTRACK_API_KEY="your-api-key"
 npm start
 ```
 
