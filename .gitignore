@@ -27,3 +27,5 @@ npm-debug.log*
 # Local development files
 devdocs/
 download_*.py
+nul
+.mcp.json

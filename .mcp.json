@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "ftrack": {
-      "command": "node",
-      "args": ["D:/Work/Coding/ftrack mcp/src/index.js"]
-    }
-  }
-}
